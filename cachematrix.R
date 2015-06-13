@@ -14,6 +14,10 @@
 
 ## NB! CacheSolve assumes an INVERTIBLE matrix from makeCacheMatrix
 
+## See the following for more in-depth information;
+## http://adv-r.had.co.nz/Environments.html
+## http://adv-r.had.co.nz/Functional-programming.html
+
 
 # makeCacheMatrix implementation
 
@@ -51,13 +55,13 @@ cacheSolve <- function(x, ...) {
      
      the_inverse <- x$getinverse()
      
-     # Return the inverse if existing
+     # Return the cached inverse if existing
      if(!is.null(the_inverse)) {
           message("getting cached data")
           return(the_inverse)
      }
      
-     # inverse not existing, calculate it, store it and return it
+     # inverse does not exist, calculate it, store it and return it
      the_matrix <- x$get()
      the_inverse <- solve(the_matrix, ...)
      x$setinverse(the_inverse)
@@ -88,6 +92,7 @@ rm(a_matrix, a_matrix2, m)              # Cleaning up
 ## TEST scenarios for cacheSolve
 
 set.seed(23)
+
 m <- makeCacheMatrix(matrix(sample.int(15, size = 5*5, replace = TRUE), nrow = 5, ncol = 5))
 
 cacheSolve(m) # 1st time - NO "getting cached data"
