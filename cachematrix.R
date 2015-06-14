@@ -104,6 +104,6 @@ m$set(matrix(sample.int(15, size = 7*7, replace = TRUE), nrow = 7, ncol = 7))
 cacheSolve(m) # 1st time - NO "getting cached data"
 cacheSolve(m) # 2nd time - "getting cached data"
 
-rm(m)
+rm(m, makeCacheMatrix, cacheSolve)
 
 
